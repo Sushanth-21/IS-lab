@@ -1,1 +1,1 @@
-# IS-lab
+# Information Security Lab
