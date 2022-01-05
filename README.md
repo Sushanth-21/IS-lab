@@ -1,1 +1,2 @@
-# Information Security Lab
+**steps**
+pip install -r requirements.txt
