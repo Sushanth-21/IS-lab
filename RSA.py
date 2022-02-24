@@ -1,33 +1,38 @@
-def gcd(a, b):
-    while(True):
-        t = a % b
-        if t == 0:
-            return b
-        a = b
-        b = t
-
-
-p, q = map(int, input("Enter 2 prime numbers : ").split())
-plain = int(input("Enter plain text : "))
+import math
+p, q = map(int, input("enter two prime numbers").split())
+print('p == {} , q == {}'.format(p, q))
 n = p*q
+print('n == {}'.format(n))
+
+
+def phi(p, q):
+    return (p-1)*(q-1)
+
+
+print('phi == {}'.format(phi(p, q)))
 e = 2
-phi = (p-1)*(q-1)
-while(e < phi):
-    if gcd(e, phi) == 1:
+while e < phi(p, q):
+    if math.gcd(e, phi(p, q)) == 1:
         break
-    e += 1
+    else:
+        e += 1
+print('e == {}'.format(e))
 
-for k in range(2, phi):
-    if gcd(k, phi) == 1:
-        break
 
-for i in range(1, 10):
-    x = 1 + i*phi
-    if x % k == 0:
-        d = int(x/k)
-        break
-c = (plain**e) % n
-print("d-{} e-{} phi-{} c-{} n-{}".format(d, e, phi, n))
-print("Encrypted message is : ", c)
-m = (c**d) % n
-print("Decrypted message is : ", m)
+def compute_d(e, phi):
+    d = 1
+    while True:
+        if (d*e) % phi == 1:
+            return d
+        else:
+            d += 1
+
+
+print('d == {}'.format(compute_d(e, phi(p, q))))
+d = compute_d(e, phi(p, q))
+plain_text = int(input("enter plain_text"))
+cipher_text = (plain_text**e) % n
+print('plain_text == {}'.format(plain_text))
+print('cipher_text == {}'.format(cipher_text))
+plain_text = (cipher_text ** d) % n
+print('plain_text == {}'.format(plain_text))
