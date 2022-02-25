@@ -1,3 +1,4 @@
+import random
 def euclid(m, n):
 
     if n == 0:
@@ -49,7 +50,7 @@ for i in range(2, Pn):
         key.append(i)
 
 
-e = int(313)
+e = int(random.choice(key))
 
 
 r, d = exteuclid(Pn, e)
